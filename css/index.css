@@ -1,0 +1,30 @@
+.top {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #f0f0f0;
+    float: left;
+}
+
+.w {
+    width: 1180px;
+    height: 1488px;
+    margin: 0 auto;
+    background-color: #f98;
+}
+
+.Atlantic,
+.atlantic {
+    margin: 0 0 0 16px;
+    display: inline;
+    color: #000444;
+}
+
+.atlantic {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000444;
+}
