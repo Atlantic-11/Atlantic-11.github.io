@@ -1,15 +1,15 @@
 var VS = "V1"
 console.log(11)
 //缓存
-self.addEventListener('install', function (e) {
-  e.waitUntil(
+self.addEventListener('install', function (event) {
+  event.waitUntil(
     caches.open(VS).then(function(cache) {
       return cache.addAll(['./index.html']);
     })
   )
 })
 //缓存更新
-self.addEventListener('activate', function (e) {
+self.addEventListener('activate', function (event) {
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
@@ -24,17 +24,17 @@ self.addEventListener('activate', function (e) {
   )
 })
 // 捕捉请求返回缓存数据
-self.addEventListener('fetch', function(e) {
-  console.log(e, 666)
-  e.respondWith(
+self.addEventListener('fetch', function(event) {
+  console.log(event, 666)
+  event.respondWith(
     caches
-      .match(e.request)
+      .match(event.request)
       .catch(function (){
-        return fetch(e.request);
+        return fetch(event.request);
       })
       .then(function (response) {
         caches.open(VS).then(function (cache){
-          cache.put(e.request, response);
+          cache.put(event.request, response);
         });
         return response.clone();
       })
