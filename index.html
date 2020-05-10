@@ -45,10 +45,10 @@
   function $(selector) {
     return document.querySelector(selector)
   }
-  console.log('serviceWork' in navigator)
+  console.log('serviceWorker' in navigator)
 
   // 判断浏览器是否支持serviceWork ps:需要https 本地网页不支持
-  if ('serviceWorkr' in navigator) {
+  if ('serviceWorker' in navigator) {
     $('#isSupport').innerText = "支持"
     //开始注册serviceWorks
     navigator.serviceWorker
