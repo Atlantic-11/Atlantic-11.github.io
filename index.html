@@ -18,13 +18,20 @@
                 <a href="javasquery:;">Atlantic-11</a>
             </h2>
             <h4 class="atlantic">学习成长记录~</h4>
-            <img src="https://miniapps123.oss-cn-chengdu.aliyuncs.com/content_1.png" alt="">
         </div>
         <div class="content">
+          <img src="https://miniapps123.oss-cn-chengdu.aliyuncs.com/content_1.png" alt="">
           <ul>
             <li>
               浏览器是否支持:
               <span id="isSupport"></span>
+            </li>
+            <li>
+              serviceWork是否注册成功:
+              <span id="isSuccess"></span>
+            </li>
+            <li>
+              当前注册状态: <span id="state"></span>
             </li>
           </ul>
         </div>
@@ -38,7 +45,38 @@
   function $(selector) {
     return document.querySelector(selector)
   }
+  // 判断浏览器是否支持serviceWork ps:需要https 本地网页不支持
   if ('serviceWork' in navigator) {
     $('#isSupport').innerText = "支持"
+    //开始注册serviceWorks
+    navigator.serviceWorker
+    //缓存路径配置文件
+    .register('./sw-hc.js', {
+      scopes: "./"
+    })
+    .then(function (res) {
+      console.log(res)
+      $('#isSuccess').innerText = '注册成功'
+      var serviceWorker;
+      if (res.installing) {
+        serviceWorker = res.installing;
+        $('#state').innerText = 'installing'
+      } else if (res.waiting) {
+        serviceWorker = res.active;
+        $('#state').innerText = 'active'
+      }
+      if (serviceWorker) {
+        $('#swState').innerText = serviceWorker.state
+        serviceWorker.addEventListener('statechange', function (e){
+          $('#swState').innerText += '&emsp:状态变化为 + e.target.state '
+        })
+      }
+    })
+    .catch(function (err) {
+      console.log(err)
+      $('#isSuccess').innerText = '注册失败'
+    })
+  } else {
+    $('#isSupport').innerText = "不支持"
   }
 </script>
