@@ -45,8 +45,9 @@
   function $(selector) {
     return document.querySelector(selector)
   }
-  // 判断浏览器是否支持serviceWork ps:需要https 本地网页不支持
   console.log('serviceWork' in navigator)
+
+  // 判断浏览器是否支持serviceWork ps:需要https 本地网页不支持
   if ('serviceWork' in navigator) {
     $('#isSupport').innerText = "支持"
     //开始注册serviceWorks
