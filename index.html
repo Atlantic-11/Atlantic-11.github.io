@@ -18,9 +18,27 @@
                 <a href="javasquery:;">Atlantic-11</a>
             </h2>
             <h4 class="atlantic">学习成长记录~</h4>
+            <img src="https://miniapps123.oss-cn-chengdu.aliyuncs.com/content_1.png" alt="">
+        </div>
+        <div class="centent">
+          <ul>
+            <li>
+              浏览器是否支持:
+              <span id="isSupport"></span>
+            </li>
+          </ul>
         </div>
     </div>
-
 </body>
 
 </html>
+
+<script>
+  // 封装一个$
+  function $(selector) {
+    return document.querySelector(selector)
+  }
+  if ('serviceWork' in navigator) {
+    $('#isSupport').innerText = "支持"
+  }
+</script>
