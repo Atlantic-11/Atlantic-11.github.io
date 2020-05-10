@@ -56,15 +56,15 @@
     .register('./sw-hc.js', {
       scopes: "./"
     })
-    .then(function (res) {
-      console.log(res)
+    .then(function (registration) {
+      console.log(registration)
       $('#isSuccess').innerText = '注册成功'
       var serviceWorker;
-      if (res.installing) {
-        serviceWorker = res.installing;
+      if (registration.installing) {
+        serviceWorker = registration.installing;
         $('#state').innerText = 'installing'
-      } else if (res.waiting) {
-        serviceWorker = res.active;
+      } else if (registration.waiting) {
+        serviceWorker = registration.active;
         $('#state').innerText = 'active'
       }
       if (serviceWorker) {
