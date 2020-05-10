@@ -69,7 +69,7 @@
       }
       if (serviceWorker) {
         $('#swState').innerText = serviceWorker.state
-        serviceWorker.addEventListener('statechange', function (e){
+        serviceWorker.addEventListener('stateChange', function (e){
           $('#swState').innerText += '&emsp:状态变化为 + e.target.state '
         })
       }
