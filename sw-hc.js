@@ -1,5 +1,5 @@
 var VS = "V1"
-
+console.log(11)
 //缓存
 self.addEventListener('install', function (e) {
   e.waitUntil(
